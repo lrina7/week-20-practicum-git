@@ -599,7 +599,7 @@ async function makeTwentySeven() {
 /*function makeTwentyEight() {
 	const resultTwentyEight = document.getElementById('result28');
 	resultTwentyEight.textContent = 'Ожидание...';
-	try {
+
 		Promise.reject('err')
 			.then((result) => {
 				resultTwentyEight.textContent = 'Успешное завершение: ' + result;
@@ -610,14 +610,17 @@ async function makeTwentySeven() {
 			});
 
 		//Код с setTimeout
-		setTimeout(() => {
-			throw Error('ошибка');
+		new Promise((resolve, reject) => {
+			setTimeout(() => {
+				reject(Error('ошибка'));
 		}, 1000);
-	} catch (e) {
-		resultTwentyEight.textContent = 'Ошибка на верхнем уровне: ' + e;
-		console.log('Ошибка на верхнем уровне:', e);
-	}
-}
+
+	}) .catch ((error) => {
+		resultTwentyEight.textContent = 'Ошибка в setTimeout: ' + error.message;
+		console.log('Ошибка на верхнем уровне:', error);
+	});
+ }
+
 
 document.querySelector('.b-28').addEventListener('click', makeTwentyEight);*/
 
@@ -666,4 +669,4 @@ document.querySelector('.b-29').addEventListener('click', makeTwentyNine);*/
 	}
 }
 
-document.querySelector('.b-30').addEventListener('click', makeThirty);
+document.querySelector('.b-30').addEventListener('click', makeThirty);*/
